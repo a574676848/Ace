@@ -25,7 +25,7 @@ namespace Ace.Entity.System
         节点组 = 4,
     }
 
-    [Table("Sys_Permission")]
+    [Table("sys_permission")]
     public class SysPermission
     {
         public string Id { get; set; }

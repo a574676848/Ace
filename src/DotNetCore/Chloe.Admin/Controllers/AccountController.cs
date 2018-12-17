@@ -52,7 +52,8 @@ namespace Chloe.Admin.Controllers
 
             SysUser user;
             string msg;
-            if (!accountAppService.CheckLogin(loginName, password, out user, out msg))
+            string token;
+            if (!accountAppService.CheckLogin(loginName, password, out user, out token, out msg))
             {
                 this.CreateService<ISysLogAppService>().LogAsync(null, null, ip, LogType.Login, moduleName, false, "用户[{0}]登录失败：{1}".ToFormat(loginName, msg));
                 return this.FailedMsg(msg);
@@ -63,12 +64,14 @@ namespace Chloe.Admin.Controllers
             session.AccountName = user.AccountName;
             session.Name = user.Name;
             session.LoginIP = ip;
+            session.Token = token;
             session.IsAdmin = user.AccountName.ToLower() == AppConsts.AdminUserName;
 
             this.CurrentSession = session;
 
             this.CreateService<ISysLogAppService>().LogAsync(user.Id, user.Name, ip, LogType.Login, moduleName, true, "登录成功");
-            return this.SuccessMsg(msg);
+            msg = "登录成功";
+            return this.SuccessResult(session,msg);
         }
         public ActionResult Logout([FromServices]IMemoryCache memoryCache)
         {

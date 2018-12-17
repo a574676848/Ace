@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Chloe.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ace.Entity.Wiki
 {
+    [Table("wikimenuitem")]
     public class WikiMenuItem
     {
         public string Id { get; set; }

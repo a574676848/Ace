@@ -4,6 +4,7 @@ using Ace.Entity;
 using Ace.Entity.System;
 using Ace.Exceptions;
 using Ace.Security;
+using Ace.Token;
 using Chloe;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Ace.Application.System
         /// <param name="user"></param>
         /// <param name="msg"></param>
         /// <returns></returns>
-        bool CheckLogin(string userName, string password, out SysUser user, out string msg);
+        bool CheckLogin(string userName, string password, out SysUser user,out string token, out string msg);
         /// <summary>
         /// 
         /// </summary>
@@ -49,11 +50,11 @@ namespace Ace.Application.System
         /// <param name="user"></param>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool CheckLogin(string loginName, string password, out SysUser user, out string msg)
+        public bool CheckLogin(string loginName, string password, out SysUser user, out string token, out string msg)
         {
             user = null;
             msg = null;
-
+            token = null;
             loginName.NotNullOrEmpty();
             password.NotNullOrEmpty();
 
@@ -106,7 +107,16 @@ namespace Ace.Application.System
             }
 
             DateTime lastVisitTime = DateTime.Now;
-            this.DbContext.Update<SysUserLogOn>(a => a.Id == userLogOnEntity.Id, a => new SysUserLogOn() { LogOnCount = a.LogOnCount + 1, PreviousVisitTime = userLogOnEntity.LastVisitTime, LastVisitTime = lastVisitTime });
+            token=TokenHelper.NewRefreshToken();
+            this.DbContext.Update<SysUserLogOn>(a => a.Id == userLogOnEntity.Id, a => new SysUserLogOn() {
+                LogOnCount = a.LogOnCount + 1,
+                PreviousVisitTime = userLogOnEntity.LastVisitTime,
+                LastVisitTime = lastVisitTime,
+                Token = TokenHelper.NewRefreshToken(),
+                RefreshToken= TokenHelper.NewRefreshToken(),
+                Expiresin=7200,
+                ExpiresinTime= DateTimeHelper.TimeStamp().ToLong(0)+7200
+            });
             user = userEntity;
             return true;
         }

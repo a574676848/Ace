@@ -1,4 +1,5 @@
 ﻿using Ace.Attributes;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Ace.Web.Mvc
 {
+    [EnableCors("any")]//跨域
     public abstract class BaseController : Controller
     {
         static readonly Type TypeOfCurrent = typeof(BaseController);
@@ -110,6 +112,7 @@ namespace Ace.Web.Mvc
             Result<object> result = Result.CreateResult<object>(ResultStatus.OK, data);
             return this.JsonContent(result);
         }
+
         [NonAction]
         public ContentResult SuccessMsg(string msg = "操作成功")
         {
@@ -143,6 +146,20 @@ namespace Ace.Web.Mvc
         {
             Result retResult = new Result(ResultStatus.Failed, msg);
             return this.JsonContent(retResult);
+        }
+        [NonAction]
+        public ContentResult SuccessResult(object data = null, string msg = null)
+        {
+            Result<object> result = Result.CreateResult<object>(ResultStatus.OK, data);
+            result.Msg = msg;
+            return this.JsonContent(result);
+        }
+        [NonAction]
+        public ContentResult FailedResult(object data = null, string msg = null)
+        {
+            Result<object> result = Result.CreateResult<object>(ResultStatus.Failed, data);
+            result.Msg = msg;
+            return this.JsonContent(result);
         }
     }
 }

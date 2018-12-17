@@ -314,7 +314,7 @@ namespace Ace.Application.System
                 this.DbContext.Update<SysUser>(user);
             });
         }
-        void Trim(AddUpdateUserInputBase input)
+        void Trim(UserDtoBase input)
         {
             if (input.AccountName.IsNotNullOrEmpty())
                 input.AccountName = input.AccountName.Trim();

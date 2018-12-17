@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ace.Entity.Wiki
 {
-    [Chloe.Annotations.Table("WikiDocument")]
+    [Chloe.Annotations.Table("wikidocument")]
     public class WikiDocumentDetail : WikiDocument
     {
         public string HtmlContent { get; set; }

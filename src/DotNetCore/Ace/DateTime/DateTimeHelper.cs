@@ -46,5 +46,13 @@ namespace System
         {
             return DateOf1970_01_01.AddMilliseconds(totalMilliseconds);
         }
+        /// <summary>
+        /// 获取时间戳
+        /// </summary>
+        /// <returns></returns>
+        public static string TimeStamp()
+        {
+            return Convert.ToInt32((DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds).ToString();
+        }
     }
 }

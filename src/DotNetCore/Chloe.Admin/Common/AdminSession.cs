@@ -16,6 +16,7 @@ namespace Chloe.Admin.Common
         // public string OrgIds { get; set; }
         //public string RoleIds { get; set; }
         public string LoginIP { get; set; }
+        public string Token { get; set; }
         //public DateTime LoginTime { get; set; }
         public bool IsAdmin { get; set; }
 
@@ -27,6 +28,7 @@ namespace Chloe.Admin.Common
             claims.Add(new Claim("UserId", this.UserId ?? ""));
             claims.Add(new Claim("AccountName", this.AccountName ?? ""));
             claims.Add(new Claim("Name", this.Name ?? ""));
+            claims.Add(new Claim("Token", this.Token ?? ""));
             //claims.Add(new Claim("OrgIds", this.OrgIds ?? ""));
             //claims.Add(new Claim("RoleIds", this.RoleIds ?? ""));
             claims.Add(new Claim("LoginIP", this.LoginIP ?? ""));
@@ -44,6 +46,7 @@ namespace Chloe.Admin.Common
                     UserId = claims.Claims.FirstOrDefault(x => x.Type == "UserId")?.Value ?? "",
                     AccountName = claims.Claims.FirstOrDefault(x => x.Type == "AccountName")?.Value ?? "",
                     Name = claims.Claims.FirstOrDefault(x => x.Type == "Name")?.Value ?? "",
+                    Token = claims.Claims.FirstOrDefault(x => x.Type == "Token")?.Value ?? "",
                     //DepartmentId = claims.Claims.FirstOrDefault(x => x.Type == "DepartmentId")?.Value ?? "",
                     //DutyId = claims.Claims.FirstOrDefault(x => x.Type == "DutyId")?.Value ?? "",
                     //RoleId = claims.Claims.FirstOrDefault(x => x.Type == "RoleId")?.Value ?? "",

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ace.Entity.System
 {
-    [Table("Sys_UserLogOn")]
+    [Table("sys_userlogon")]
     public class SysUserLogOn
     {
         public string Id { get; set; }
@@ -17,6 +17,10 @@ namespace Ace.Entity.System
         public DateTime? PreviousVisitTime { get; set; }
         public DateTime? LastVisitTime { get; set; }
         public int LogOnCount { get; set; }
+        public string Token { get; set; }
+        public decimal? Expiresin { get; set; }
+        public decimal? ExpiresinTime { get; set; }
+        public string RefreshToken { get; set; }
     }
 
 }

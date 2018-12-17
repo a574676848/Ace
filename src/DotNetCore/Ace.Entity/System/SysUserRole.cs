@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ace.Entity.System
 {
-    [Table("Sys_UserRole")]
+    [Table("sys_userrole")]
     public class SysUserRole
     {
         public string Id { get; set; }

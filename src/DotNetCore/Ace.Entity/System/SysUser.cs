@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ace.Entity.System
 {
-    [Table("Sys_User")]
+    [Table("sys_user")]
     public class SysUser
     {
         public const string _AdminAccountName = "admin";

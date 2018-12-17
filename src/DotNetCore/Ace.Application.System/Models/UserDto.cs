@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Ace.Application.System
 {
-    public class AddUpdateUserInputBase : ValidationModel
+    public class UserDtoBase : ValidationModel
     {
         public string AccountName { get; set; }
         public string Name { get; set; }
@@ -14,6 +14,8 @@ namespace Ace.Application.System
         public string MobilePhone { get; set; }
         public DateTime? Birthday { get; set; }
         public string WeChat { get; set; }
+        public string Token { get; set; }
+
         public string Email { get; set; }
         public string Description { get; set; }
 
@@ -34,7 +36,7 @@ namespace Ace.Application.System
         }
     }
 
-    public class AddUserInput : AddUpdateUserInputBase
+    public class AddUserInput : UserDtoBase
     {
         public string CreatorId { get; set; }
         /// <summary>
@@ -45,7 +47,7 @@ namespace Ace.Application.System
         public string Password { get; set; }
     }
 
-    public class UpdateUserInput : AddUpdateUserInputBase
+    public class UpdateUserInput : UserDtoBase
     {
         [RequiredAttribute(ErrorMessage = "{0}不能为空")]
         public string Id { get; set; }

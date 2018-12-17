@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ace.Entity.System
 {
-    [Table("Sys_Role")]
+    [Table("sys_role")]
     public class SysRole
     {
         public string Id { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ace.Entity.System
 {
-    [Table("Sys_Log")]
+    [Table("sys_log")]
     public class SysLog
     {
         public int Id { get; set; }
