@@ -29,6 +29,13 @@ namespace Chloe.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 登录验证
+        /// </summary>
+        /// <param name="loginName">登录名：账号,邮箱,手机号</param>
+        /// <param name="password">密码</param>
+        /// <param name="verifyCode">验证码,暂无</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Login(string loginName, string password/*经过md5加密后的密码*/, string verifyCode)
         {
@@ -73,6 +80,7 @@ namespace Chloe.Admin.Controllers
             msg = "登录成功";
             return this.SuccessResult(session,msg);
         }
+
         public ActionResult Logout([FromServices]IMemoryCache memoryCache)
         {
             //http://www.cnblogs.com/sheng-jie/p/6970091.html
