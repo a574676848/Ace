@@ -70,7 +70,7 @@ namespace Ace.Data
                     dbContext = CreatePostgreSQLContext(connString);
                     break;
                 default:
-                    dbContext = CreateSqlServerContext(connString);
+                    dbContext = CreateMySqlContext(connString);
                     break;
             }
 

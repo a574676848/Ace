@@ -14,7 +14,7 @@ namespace Microsoft.AspNetCore.Http
                 throw new ArgumentNullException("request");
             }
 
-            return (request.Headers["X-Requested-With"] == "XMLHttpRequest") || ((request.Headers != null) && (request.Headers["X-Requested-With"] == "XMLHttpRequest"));
+            return (request.Headers["X-Requested-With"].ToString() == "XMLHttpRequest") || ((request.Headers != null) && (request.Headers["X-Requested-With"].ToString() == "XMLHttpRequest"));
             //return (request["X-Requested-With"] == "XMLHttpRequest") || ((request.Headers != null) && (request.Headers["X-Requested-With"] == "XMLHttpRequest"));
         }
     }
