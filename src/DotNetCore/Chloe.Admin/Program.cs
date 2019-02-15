@@ -46,8 +46,7 @@ namespace Chloe.Admin
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); /* 支持中文 */
 
-            string contentRoot = Directory.GetCurrentDirectory();
-
+            string contentRoot = Directory.GetCurrentDirectory();            
             var hostBuilder = WebHost.CreateDefaultBuilder(args);
             var host = hostBuilder
                 .BindUrls(args, contentRoot)
